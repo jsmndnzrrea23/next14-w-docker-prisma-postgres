@@ -1,5 +1,4 @@
 import db from '@/modules/db'
-import { faker } from '@faker-js/faker'
 import { revalidatePath } from 'next/cache'
 import Button from '@/components/Button'
 import PostsList from '@/components/PostsList'
@@ -21,15 +20,21 @@ export default async function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <form action={generatePosts}>
-        <input type="text" name="content" placeholder="content" required />
-        <Button className="bg-zinc-900 disabled:bg-zinc-500 text-white transition">
-          Generate Posts
+    <main className="p-4 flex flex-col">
+      <form className="flex gap-2" action={generatePosts}>
+        <input
+          className="border-2 border-slate-300 rounded-md p-2"
+          type="text"
+          name="content"
+          placeholder="content"
+          required
+        />
+        <Button className="bg-zinc-900 disabled:bg-zinc-500 text-white transition p-2 rounded-md">
+          Submit
         </Button>
       </form>
 
-      <h1>All Posts</h1>
+      <h1 className="text-lg font-semibold">All Posts</h1>
 
       <Suspense fallback="Loading...">
         <PostsList />
